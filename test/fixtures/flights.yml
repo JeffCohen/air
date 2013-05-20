@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  departs_at: 2013-05-20 09:06:14
+  arrives_at: 2013-05-20 09:06:14
+  miles: 1
+  duration: 1
+  seats: 1
+  arrival_airport_id: 1
+  departure_airport_id: 1
+
+two:
+  number: 1
+  departs_at: 2013-05-20 09:06:14
+  arrives_at: 2013-05-20 09:06:14
+  miles: 1
+  duration: 1
+  seats: 1
+  arrival_airport_id: 1
+  departure_airport_id: 1
