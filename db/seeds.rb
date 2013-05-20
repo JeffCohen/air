@@ -5,3 +5,47 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+# Write some code to seed the database with airport info
+
+Airport.destroy_all
+
+airports = Airport.create([ {city: "Chicago", code: "ORD"},
+                            {city: "Chicago", code: "MDW"},
+                            {city: "Los Angeles", code: "JFK"},
+                            {city: "San Francisco", code: "SFO"},
+                            {city: "New York", code: "JFK"} ])
+
+puts "#{airports.count} airports created"
+
+
+Flight.destroy_all
+
+100.times do
+  Flight.create(  number: rand(100..999),
+                  departs_at: Time.parse("#{rand(4)}:00"),
+                  arrives_at: Time.parse("#{rand(6..10)}:00"),
+                  miles: rand(1000),
+                  seats: 65,
+                  arrival_airport_id: airports.sample.id,
+                  departure_airport_id: airports.sample.id)
+end
+
+puts "100 flights created"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

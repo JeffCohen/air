@@ -4,6 +4,10 @@ class Flight < ActiveRecord::Base
   belongs_to :departure_airport, class_name: 'Airport', foreign_key: 'departure_airport_id'
   belongs_to :arrival_airport, class_name: 'Airport', foreign_key: 'arrival_airport_id'
 
+  def minutes
+    return "#{(arrives_at - departs_at).to_i/60} minutes"
+  end
+
   # def arrival_airport
   #   return Airport.find_by_id(self.arrival_airport_id)
   # end
