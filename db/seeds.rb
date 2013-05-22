@@ -13,7 +13,6 @@
 Airport.destroy_all
 
 airports = Airport.create([ {city: "Chicago", code: "ORD"},
-                            {city: "Chicago", code: "MDW"},
                             {city: "Los Angeles", code: "JFK"},
                             {city: "San Francisco", code: "SFO"},
                             {city: "New York", code: "JFK"} ])
@@ -23,8 +22,12 @@ puts "#{airports.count} airports created"
 
 Flight.destroy_all
 
+
+
+
+flight_num_array = (100..999).to_a.shuffle
 100.times do
-  Flight.create(  number: rand(100..999),
+  x = Flight.create(  number: flight_num_array.pop,
                   departs_at: Time.parse("#{rand(4)}:00"),
                   arrives_at: Time.parse("#{rand(6..10)}:00"),
                   miles: rand(1000),
