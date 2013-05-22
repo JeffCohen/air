@@ -13,7 +13,7 @@
 Airport.destroy_all
 
 airports = Airport.create([ {city: "Chicago", code: "ORD"},
-                            {city: "Los Angeles", code: "JFK"},
+                            {city: "Los Angeles", code: "LAX"},
                             {city: "San Francisco", code: "SFO"},
                             {city: "New York", code: "JFK"} ])
 
@@ -24,16 +24,15 @@ Flight.destroy_all
 
 
 
-
+# Refactor to guarantee unique arrival and departure airports
 flight_num_array = (100..999).to_a.shuffle
 100.times do
-  x = Flight.create(  number: flight_num_array.pop,
-                  departs_at: Time.parse("#{rand(4)}:00"),
-                  arrives_at: Time.parse("#{rand(6..10)}:00"),
-                  miles: rand(1000),
-                  seats: 65,
-                  arrival_airport_id: airports.sample.id,
-                  departure_airport_id: airports.sample.id)
+  two_airports = airports.sample(2)
+  Flight.create( number: flight_num_array.pop,
+                 departs_at: Time.parse("#{rand(4)}:00"),
+                 seats: 65,
+                 arrival_airport_id: two_airports[0].id,
+                 departure_airport_id: two_airports[1].id)
 end
 
 puts "100 flights created"
