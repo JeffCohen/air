@@ -4,4 +4,21 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :reservations
+
+  def calc_miles
+    distances = []
+    self.reservations.each do |reservation|
+      distances << reservation.flight.distance
+    end
+    sum_of_distances = 0
+    distances.each do |distance|
+      sum_of_distances += distance
+    end
+
+    return sum_of_distances
+
+    # alternate code:
+    # self.reservations.map {|reservation| reservation.flight.distance}.inject{|sum, x| sum + x}
+  end
+
 end

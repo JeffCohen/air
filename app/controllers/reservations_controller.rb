@@ -43,9 +43,10 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(params[:reservation])
-
     respond_to do |format|
       if @reservation.save
+        @reservation.user.ff_miles += @reservation.flight.distance
+        @reservation.user.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render json: @reservation, status: :created, location: @reservation }
       else
