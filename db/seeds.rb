@@ -10,6 +10,12 @@
 
 # Write some code to seed the database with airport info
 
+User.destroy_all
+
+users = User.create([ {first_name: "Raghu", last_name: "Betina", email: 'raghu@starterleague.com', password: 'test', ff_miles: 0}, {first_name: "Jeff", last_name: "Cohen", email: "jeff@starterleague.com", password: 'test', ff_miles: 0}])
+
+puts "#{users.count} users created"
+
 Airport.destroy_all
 
 airports = Airport.create([ {city: "Chicago", code: "ORD"},
