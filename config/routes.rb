@@ -1,4 +1,9 @@
 OneWayAir::Application.routes.draw do
+
+  get '/signin' => 'sessions#new', as: 'signin'
+  post '/sessions' => 'sessions#create', as: 'sessions'
+  get '/signout' => 'sessions#destroy', as: 'signout'
+
   resources :reservations
 
 

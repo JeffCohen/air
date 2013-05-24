@@ -26,6 +26,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @reservation.flight_id = params[:flight_id]
+    @user = User.find_by_id(session[:user_id])
 
     respond_to do |format|
       format.html # new.html.erb

@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.collection_select(:user_id, User.all, :id, :first_name) %>
+    <h2>User: <%= @user.first_name %></h2>
+    <%= f.hidden_field :user_id, value: @user.id %>
   </div>
   <div class="field">
     <%= f.label :flight_id %><br />
