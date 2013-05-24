@@ -3,11 +3,14 @@
       <div class="span12">
         <%= notice %>
         <h1 class="page-header">My Profile</h1>
-        <h2>Total Miles Earned: 0</h2>
+        <h2>Total Miles Earned: <%= @user.ff_miles %></h2>
         <h2>Reservations</h2>
         <ul>
-          <li><a href="#">Flight #176. 4/16/13  ORD-JFK  9:30AM - 11:08AM</a></li>
-          <li><a href="#">Flight #461. 6/11/13  LAX-MDW  10:20AM - 2:47PM</a></li>
+          <% @user.reservations.each do |reservation| %>
+            <li><a href="<%= reservation_url(reservation.id) %>">
+              <%= reservation.formatted %>
+            </a></li>
+          <% end %>
         </ul>
       </div>
     </div>
