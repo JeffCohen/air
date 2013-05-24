@@ -29,8 +29,8 @@
                 <td><%= flight.distance %></td>
                 <td><%= flight.minutes %> minutes</td>
                 <td><%= flight.seats %></td>
-                <td><a class="btn btn-success">Book Now</a></td>
-              </tr>
+                <td><%= link_to 'Book Now', new_reservation_url(flight_id: flight.id), {class: 'btn btn-success'} %></td>
+
             <% end %>
 
 
