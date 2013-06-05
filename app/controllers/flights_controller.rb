@@ -5,7 +5,7 @@ class FlightsController < ApplicationController
     # params[:search] = "Chicago"
     if params[:search]
       # fuzzy search gems => Thinking Sphinx, Solr
-      airport = Airport.where("code LIKE '%#{params[:search]}%' OR city LIKE '%#{params[:search]}%'").first
+      airport = Airport.where("code || city LIKE ?", "%#{params[:search]}%").first
       # airport = Airport.find_by_code(params[:search].upcase)
       if airport
         @flights = Flight.where("departure_airport_id = #{airport.id} OR arrival_airport_id = #{airport.id}")
