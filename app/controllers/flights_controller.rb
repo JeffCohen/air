@@ -2,7 +2,19 @@ class FlightsController < ApplicationController
   # GET /flights
   # GET /flights.json
   def index
-    @flights = Flight.all
+    # params[:search] = "Chicago"
+    if params[:search]
+      # fuzzy search gems => Thinking Sphinx, Solr
+      airport = Airport.where("code LIKE '%#{params[:search]}%' OR city LIKE '%#{params[:search]}%'").first
+      # airport = Airport.find_by_code(params[:search].upcase)
+      if airport
+        @flights = Flight.where("departure_airport_id = #{airport.id} OR arrival_airport_id = #{airport.id}")
+      else
+        @flights = []
+      end
+    else
+      @flights = Flight.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
