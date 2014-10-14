@@ -36,14 +36,26 @@ flight_num_array = (100..999).to_a.shuffle
   two_airports = airports.sample(2)
   Flight.create( number: flight_num_array.pop,
                  departs_at: Time.parse("#{rand(4)}:00"),
-                 seats: 65,
+                 seats: [0,65,30,20].sample,
                  arrival_airport_id: two_airports[0].id,
                  departure_airport_id: two_airports[1].id)
 end
 
 puts "100 flights created"
 
-
+puts
+puts "Can you write the appropriate has_many/belongs_to to make these work?"
+puts
+puts "Flight.first.departure_airport"
+puts "Flight.first.arrival_airport"
+puts "Airport.first.departures"
+puts "Airport.first.arrivals"
+puts "Airport.first.flights"
+puts
+puts "Can you write methods or scopes to make this code work?"
+puts
+puts "Airport.first.departures.sold_out"
+puts "Airport.first.departures.with_seats"
 
 
 
